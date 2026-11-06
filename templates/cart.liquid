@@ -1,0 +1,10 @@
+<main class="wrap" style="padding:60px 0;min-height:50vh">
+<h1>Your cart</h1>
+{% if cart.item_count > 0 %}
+{% form "cart", cart %}
+{% for item in cart.items %}<div class="cd-item" style="margin:16px 0"><img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" style="width:90px;border-radius:10px"><div><b>{{ item.title }}</b><p>{{ item.quantity }} × {{ item.price | money }}</p></div></div>{% endfor %}
+<p style="font-size:20px;margin:20px 0"><b>Subtotal: {{ cart.total_price | money }}</b></p>
+<button type="submit" name="checkout" class="btn btn-lg">Checkout</button>
+{% endform %}
+{% else %}<p>Your cart is empty.</p><a class="btn" href="/">Shop now</a>{% endif %}
+</main>

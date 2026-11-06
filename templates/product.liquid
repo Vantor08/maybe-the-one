@@ -1,0 +1,14 @@
+<main class="wrap" style="padding:60px 0;min-height:50vh">
+<div class="pdp">
+  <div class="gallery">{% if product.featured_image %}<img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.title | escape }}">{% endif %}</div>
+  <div class="buybox">
+    <h1>{{ product.title }}</h1>
+    <div class="rate">{{ product.price | money }}</div>
+    {% form "product", product %}
+      <select name="id">{% for v in product.variants %}<option value="{{ v.id }}">{{ v.title }} — {{ v.price | money }}</option>{% endfor %}</select>
+      <button type="submit" class="btn btn-lg" style="margin-top:16px">Add to cart</button>
+    {% endform %}
+    <div class="rte" style="margin-top:24px">{{ product.description }}</div>
+  </div>
+</div>
+</main>
